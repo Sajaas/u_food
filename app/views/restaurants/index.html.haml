@@ -33,6 +33,9 @@
                   = restaurant.address
                 %p
                   = restaurant.description
+                  = render restaurant.reviews
+
+
   .range
     = form_tag root_path, method: :get do
       = radio_button_tag 'range', 'km3', 'checked'
@@ -53,3 +56,12 @@
         Thanks for ordering from us!
       .col-md-2
         = image_tag 'ufood-logo.png'
+
+:javascript
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
